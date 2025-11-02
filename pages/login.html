@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign in to Abandonment Garden">
+    <title>Sign In | Abandonment Garden</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/themes.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-container"></div>
+    
+    <!-- Animated Background Gradient -->
+    <div class="gradient-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="../index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="brand-symbol">🌙</span>
+                    <span>Abandonment Garden</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="jobs.html" class="nav-link">Browse Jobs</a></li>
+                <li><a href="login.html" class="nav-link active">Sign In</a></li>
+                <li><a href="signup.html" class="nav-link btn-nav-primary">Get Started</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-container">
+                <div class="auth-card card glass-effect">
+                    <div class="auth-header">
+                        <h1>Welcome Back</h1>
+                        <p>Sign in to continue your professional journey</p>
+                    </div>
+
+                    <form id="loginForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="form-input" 
+                                placeholder="Enter your email"
+                                required
+                                autocomplete="email"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                class="form-input" 
+                                placeholder="Enter your password"
+                                required
+                                autocomplete="current-password"
+                            >
+                        </div>
+
+                        <div class="form-group form-checkbox">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-pill" style="width: 100%;">
+                            <span class="btn-text">Sign In</span>
+                            <span class="btn-shine"></span>
+                        </button>
+                    </form>
+
+                    <div class="auth-footer">
+                        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+                        <p><a href="#" class="text-muted">Forgot password?</a></p>
+                    </div>
+
+                    <div class="auth-divider">
+                        <span>or</span>
+                    </div>
+
+                    <div class="auth-demo">
+                        <p class="text-muted" style="text-align: center; font-size: 0.875rem;">
+                            Demo Account: Use any email and password to create an account
+                        </p>
+                    </div>
+                </div>
+
+                <div class="auth-side">
+                    <div class="auth-side-content">
+                        <h2>Your Career Awaits</h2>
+                        <ul class="auth-features">
+                            <li>
+                                <span class="feature-icon">✨</span>
+                                <div>
+                                    <strong>Instant Responses</strong>
+                                    <p>Get immediate feedback on all applications</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">💼</span>
+                                <div>
+                                    <strong>Hundreds of Positions</strong>
+                                    <p>Browse through extensive job listings</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">📊</span>
+                                <div>
+                                    <strong>Track Your Progress</strong>
+                                    <p>Monitor applications and achievements</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">🏆</span>
+                                <div>
+                                    <strong>Earn Achievements</strong>
+                                    <p>Unlock badges as you reach milestones</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Abandonment Garden</h3>
+                    <p class="footer-description">
+                        Your premier destination for professional opportunities.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-heading">Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="jobs.html">Browse Jobs</a></li>
+                        <li><a href="signup.html">Create Account</a></li>
+                        <li><a href="login.html">Sign In</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-heading">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Abandonment Garden. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/animations.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/main.js"></script>
+
+    <style>
+        .auth-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-4xl) 0;
+        }
+
+        .auth-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .auth-card {
+            padding: var(--spacing-3xl);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .auth-header h1 {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .auth-header p {
+            color: var(--color-text-muted);
+        }
+
+        .auth-form {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: var(--spacing-lg);
+        }
+
+        .auth-footer p {
+            margin-bottom: var(--spacing-sm);
+            font-size: var(--font-size-sm);
+        }
+
+        .auth-footer a {
+            color: var(--color-accent);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .auth-divider {
+            position: relative;
+            text-align: center;
+            margin: var(--spacing-xl) 0;
+        }
+
+        .auth-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--color-silver);
+            opacity: 0.3;
+        }
+
+        .auth-divider span {
+            position: relative;
+            background: var(--color-bg-secondary);
+            padding: 0 var(--spacing-md);
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+        }
+
+        .auth-side-content h2 {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .auth-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xl);
+        }
+
+        .auth-features li {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            font-size: var(--font-size-2xl);
+            flex-shrink: 0;
+        }
+
+        .auth-features strong {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            color: var(--color-text-primary);
+        }
+
+        .auth-features p {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+            margin: 0;
+        }
+
+        @media (max-width: 991px) {
+            .auth-container {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-side {
+                display: none;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .auth-card {
+                padding: var(--spacing-xl);
+            }
+
+            .auth-header h1 {
+                font-size: var(--font-size-2xl);
+            }
+        }
+    </style>
+</body>
+</html>
