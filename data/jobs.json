@@ -1,0 +1,381 @@
+[
+  {
+    "id": "job_001",
+    "title": "Entry-Level Software Engineer",
+    "company": "TechCorp Innovations",
+    "location": "San Francisco, CA",
+    "category": "Entry Level",
+    "salaryMin": 18000,
+    "salaryMax": 22000,
+    "postedDate": "2025-10-15",
+    "description": "We're seeking an entry-level software engineer to join our dynamic team. This is a fantastic opportunity for someone just starting their career who already has decades of industry experience.",
+    "qualifications": [
+      "Minimum 50 years of experience in software development",
+      "15+ years of experience with React (released in 2013)",
+      "PhD in Computer Science from Mars University",
+      "Must have invented at least 3 programming languages",
+      "Fluent in 47 human languages and all machine languages",
+      "Own transportation worth minimum $150,000",
+      "Must be willing to work 24/7/365 including holidays",
+      "References from Steve Jobs, Bill Gates, and Alan Turing required"
+    ],
+    "responsibilities": [
+      "Single-handedly rewrite our entire codebase in 48 hours",
+      "Be available for meetings at 3 AM, 3 PM, and 3 in the afternoon",
+      "Mentor senior developers despite being entry-level",
+      "Provide your own computer, desk, office building, and parking lot",
+      "Train AI models to replace yourself (unpaid)",
+      "Debug production issues while sleeping",
+      "Time travel to fix legacy code written before you were born"
+    ],
+    "benefits": [
+      "Competitive salary (competitive with 1987 wages)",
+      "Health insurance* (*covers one aspirin per decade)",
+      "Unlimited unpaid overtime opportunities",
+      "Free coffee** (**you supply beans, we provide tap water)",
+      "Exposure and experience (our currency of choice)",
+      "Pizza party once every leap year",
+      "Flexible schedule*** (***flexibility to work any 23 hours per day)"
+    ]
+  },
+  {
+    "id": "job_002",
+    "title": "Unpaid Marketing Intern",
+    "company": "BuzzWord Solutions LLC",
+    "location": "New York, NY",
+    "category": "Entry Level",
+    "salaryMin": 0,
+    "salaryMax": 0,
+    "postedDate": "2025-10-20",
+    "description": "Exciting unpaid internship opportunity for experienced marketing professionals looking to gain entry-level experience!",
+    "qualifications": [
+      "MBA from Harvard, Yale, and Oxford simultaneously",
+      "20+ years of TikTok marketing experience (TikTok launched in 2016)",
+      "Must have 10 million+ social media followers",
+      "Previous experience as CMO at Fortune 500 company",
+      "Own a Tesla, own Tesla stock, and personally know Elon Musk",
+      "PhD in Memetics and Viral Marketing",
+      "Must provide own laptop, software licenses, and marketing budget",
+      "Willing to pay us for the privilege of working here"
+    ],
+    "responsibilities": [
+      "Manage entire marketing department solo",
+      "Generate $10 million in revenue per quarter",
+      "Create viral campaigns hourly",
+      "Respond to emails within 30 seconds at all hours",
+      "Teach executives what social media is",
+      "Make our CEO TikTok famous",
+      "Bring your own clients and projects"
+    ],
+    "benefits": [
+      "Exposure (we can't pay rent with it, but neither can you)",
+      "Experience (on your unpaid-jobs resume)",
+      "Coffee machine access* (*BYO coffee, sugar, and cups)",
+      "Potential for paid position** (**not really)",
+      "Networking opportunities*** (***with other unpaid interns)",
+      "Certificate of completion (hand-drawn on napkin)"
+    ]
+  },
+  {
+    "id": "job_003",
+    "title": "Senior Director of Horticulture",
+    "company": "Green Dreams Landscaping",
+    "location": "Remote (must be in office daily)",
+    "category": "Remote",
+    "salaryMin": 19000,
+    "salaryMax": 21000,
+    "postedDate": "2025-10-25",
+    "description": "Join our team as we revolutionize the plant industry through synergistic growth methodologies and blockchain-enabled photosynthesis.",
+    "qualifications": [
+      "Minimum 41 years of experience in horticulture",
+      "Master's degree in Molecular Physics and Quantum Botany",
+      "Must personally know all 400,000 plant species by their scientific names",
+      "Own a brand new vehicle worth at least $90,000",
+      "Ability to communicate with plants telepathically",
+      "Previous experience managing teams of 500+ trees",
+      "Must be willing to relocate anywhere in the universe on 2 hours notice",
+      "Own greenhouse, laboratory, and botanical garden"
+    ],
+    "responsibilities": [
+      "Make plants grow 500% faster using positive thinking",
+      "Develop AI-powered flowers",
+      "Work 168 hours per week (yes, all of them)",
+      "Provide own soil, water, sunlight, and gravity",
+      "Train plants to write code",
+      "Invent new colors for existing flowers",
+      "Reverse climate change single-handedly by Friday"
+    ],
+    "benefits": [
+      "Competitive salary (for 1950)",
+      "Dental insurance (covers 1 tooth per lifetime)",
+      "Unlimited PTO* (*requires 18 months advance notice and board approval)",
+      "Free parking** (**5 miles from office)",
+      "Annual team building*** (***mandatory unpaid weekend retreat)",
+      "Company phone**** (****rotary dial from 1960s)"
+    ]
+  },
+  {
+    "id": "job_004",
+    "title": "Part-Time Graphic Designer",
+    "company": "Creative Chaos Studios",
+    "location": "Los Angeles, CA",
+    "category": "Part-Time",
+    "salaryMin": 15000,
+    "salaryMax": 17000,
+    "postedDate": "2025-10-28",
+    "description": "Seeking passionate designer for part-time role (80 hours per week). Must have undying love for design and total indifference to compensation.",
+    "qualifications": [
+      "30 years minimum experience with Figma (launched in 2016)",
+      "Must have designed logos for Apple, Nike, and NASA",
+      "BFA, MFA, and PhD in Design from RISD",
+      "Own professional studio worth $500,000+",
+      "Win 10+ international design awards annually",
+      "Possess working time machine to meet impossible deadlines",
+      "Must already be employed full-time elsewhere (we need your nights/weekends)",
+      "Bring your own clients who pay real money"
+    ],
+    "responsibilities": [
+      "Complete 50 projects per day",
+      "Work 80-100 hours per week (it's 'part-time' from our perspective)",
+      "Provide unlimited free revisions until CEO's spouse approves",
+      "Design for free, revise for free, breathe for free",
+      "Teach design classes to full-time staff",
+      "Make CEO's personal projects your top priority",
+      "Accept feedback like 'make it pop' and 'I'll know it when I see it'"
+    ],
+    "benefits": [
+      "Exposure to our 47 Instagram followers",
+      "Portfolio piece* (*we own all rights)",
+      "Flexible hours** (**work whenever we demand)",
+      "Remote work*** (***from our office only)",
+      "Creative freedom**** (****after 87 rounds of revisions)",
+      "Opportunity to work with 'industry leaders' (unpaid founders)"
+    ]
+  },
+  {
+    "id": "job_005",
+    "title": "Chief Executive Officer",
+    "company": "StartUp Dreams Inc.",
+    "location": "Austin, TX",
+    "category": "Executive",
+    "salaryMin": 25000,
+    "salaryMax": 28000,
+    "postedDate": "2025-11-01",
+    "description": "Revolutionary startup seeking CEO willing to work for equity in our vision. Salary is negotiable (downward only).",
+    "qualifications": [
+      "Previously served as CEO of Amazon, Google, and Microsoft simultaneously",
+      "MBA from every Ivy League school",
+      "Net worth exceeding $1 billion (to invest in the company)",
+      "Personal relationships with all venture capitalists globally",
+      "Must own private jet for business travel (unpaid)",
+      "40+ years experience in cryptocurrency (Bitcoin launched 2009)",
+      "Ability to survive without sleep, food, or income",
+      "References from Warren Buffett, Jeff Bezos, and your future self"
+    ],
+    "responsibilities": [
+      "Make company profitable on Day 1 with $0 budget",
+      "Raise $100 million in funding using only charisma",
+      "Work 200 hours per week minimum",
+      "Pay yourself last (never)",
+      "Take full responsibility for all failures, credit founders for all successes",
+      "Provide personal funds to cover payroll during 'growth phases'",
+      "Make the company 'the next Tesla' by next Tuesday"
+    ],
+    "benefits": [
+      "Equity* (*0.0001% after significant dilution)",
+      "Prestige of CEO title (only thing you'll be able to afford)",
+      "Experience in turning down salary",
+      "Opportunity to fail spectacularly in 18 months",
+      "LinkedIn headline material",
+      "Potential to be blamed for everything"
+    ]
+  },
+  {
+    "id": "job_006",
+    "title": "Data Scientist / Barista / Janitor",
+    "company": "MultiTask Masters Corp",
+    "location": "Seattle, WA",
+    "category": "Technical",
+    "salaryMin": 32000,
+    "salaryMax": 35000,
+    "postedDate": "2025-10-12",
+    "description": "We're looking for a passionate individual who can handle data science, make perfect espresso, and clean bathrooms with equal expertise.",
+    "qualifications": [
+      "PhD in Statistics, Machine Learning, and Janitorial Sciences",
+      "25+ years experience with Python, R, SQL, espresso machines, and mops",
+      "Barista certification from Italy",
+      "Olympic-level multitasking abilities",
+      "Must own industrial cleaning equipment and AI computing cluster",
+      "Previous experience running three full-time jobs simultaneously",
+      "Ability to build ML models while steaming milk and scrubbing toilets",
+      "Must provide own coffee beans, cleaning supplies, and neural networks"
+    ],
+    "responsibilities": [
+      "Build production ML models between coffee orders",
+      "Clean entire office before 6 AM daily",
+      "Serve as company barista during all business hours",
+      "Manage data pipelines while managing bathroom pipes",
+      "Train neural networks and new baristas",
+      "Deep clean while doing deep learning",
+      "Be available 24/7 for data emergencies and coffee emergencies"
+    ],
+    "benefits": [
+      "One role, three jobs, one salary!",
+      "Free coffee* (*that you make)",
+      "Exercise from constant running around",
+      "Diverse skill utilization",
+      "Never a dull moment (or a free moment)",
+      "Recognition as 'most versatile employee' (most exploited)"
+    ]
+  },
+  {
+    "id": "job_007",
+    "title": "Social Media Manager",
+    "company": "Influencer Factory",
+    "location": "Miami, FL",
+    "category": "Creative",
+    "salaryMin": 22000,
+    "salaryMax": 24000,
+    "postedDate": "2025-10-18",
+    "description": "Fast-paced agency seeks social media expert who lives and breathes content. Literally. No time for non-content activities.",
+    "qualifications": [
+      "10 million+ personal followers across all platforms",
+      "15 years experience with Instagram Reels (launched 2020)",
+      "Must be under 22 years old with 30 years experience",
+      "Own professional photo studio, video equipment worth $200,000+",
+      "Previous experience going viral hourly",
+      "Doctorate in Memeology from a top university",
+      "Personal friendships with every influencer globally",
+      "Never sleep (content doesn't create itself at 3 AM)"
+    ],
+    "responsibilities": [
+      "Post 500 pieces of viral content daily",
+      "Respond to all comments within 0.3 seconds",
+      "Grow following by 1 million per week",
+      "Work 24/7 monitoring trends",
+      "Create TikToks, Reels, Stories, Posts simultaneously while sleeping",
+      "Make CEO's personal accounts famous",
+      "Predict trends 6 months in advance",
+      "Use personal equipment and accounts for all company content"
+    ],
+    "benefits": [
+      "Exposure to our 12 followers",
+      "Learn about burnout firsthand",
+      "Unlimited screen time",
+      "Damage your eyesight professionally",
+      "Develop severe social media addiction (on the clock)",
+      "Free therapy* (*just kidding, no healthcare)"
+    ]
+  },
+  {
+    "id": "job_008",
+    "title": "Full-Stack Everything Developer",
+    "company": "Code Crunch Technologies",
+    "location": "Boston, MA",
+    "category": "Technical",
+    "salaryMin": 45000,
+    "salaryMax": 48000,
+    "postedDate": "2025-10-22",
+    "description": "We need a developer who can code, design, manage, market, sell, and support. Also legal, accounting, and lunch runs.",
+    "qualifications": [
+      "Expert in every programming language (including ones not yet invented)",
+      "35 years experience in frontend, backend, mobile, ML, DevOps, and blockchain",
+      "Law degree for handling contracts",
+      "CPA license for company accounting",
+      "Marketing degree for growth hacking",
+      "Commercial driver's license for deliveries",
+      "Medical degree (in case anyone gets hurt)",
+      "Must own data center and law firm"
+    ],
+    "responsibilities": [
+      "Build entire product solo",
+      "Handle all tech, design, legal, accounting, HR, and janitorial duties",
+      "Work 200+ hours per week",
+      "Be expert in everything",
+      "Make CEO's technical ignorance your problem",
+      "Support production 24/7 while shipping new features hourly",
+      "Do everyone's job for one person's salary"
+    ],
+    "benefits": [
+      "Opportunity to be severely overworked",
+      "Learn what burnout feels like",
+      "Develop stress-related health conditions",
+      "Resume that says 'Full-Stack' (Full-Stack of everything)",
+      "Experience doing 10 jobs poorly instead of 1 job well"
+    ]
+  },
+  {
+    "id": "job_009",
+    "title": "Junior Account Executive",
+    "company": "Sales Synergy Solutions",
+    "location": "Chicago, IL",
+    "category": "Sales",
+    "salaryMin": 20000,
+    "salaryMax": 23000,
+    "postedDate": "2025-10-30",
+    "description": "Join our aggressive sales team! We're a family! (A family that expects you to bring your own family members as clients.)",
+    "qualifications": [
+      "25+ years of B2B enterprise sales experience",
+      "Existing client portfolio generating $50 million annually",
+      "Must bring book of business worth $100M+ on Day 1",
+      "Personal network including every Fortune 500 CEO",
+      "Own luxury car for client transportation",
+      "Previous experience as VP of Sales at multiple companies",
+      "Ability to sell ice to penguins, sand to beaches",
+      "Must have wealthy family members as guaranteed customers"
+    ],
+    "responsibilities": [
+      "Generate $10 million in revenue monthly",
+      "Bring existing clients from previous employer (legally questionable)",
+      "Work 100% commission with negative base salary",
+      "Pay for all client entertainment from own pocket",
+      "Cold call 1,000 prospects daily",
+      "Close deals that don't exist",
+      "Achieve 200% of impossible quota"
+    ],
+    "benefits": [
+      "Commission* (*after company takes 99%)",
+      "Opportunity to experience poverty while being employed",
+      "Character-building through constant rejection",
+      "Transportation stipend** (**must provide own vehicle, gas, and tolls)",
+      "Presidents Club trip*** (***if you pay your own way)"
+    ]
+  },
+  {
+    "id": "job_010",
+    "title": "Content Writer / Video Editor / Developer",
+    "company": "One-Person-Army Media",
+    "location": "Denver, CO",
+    "category": "Creative",
+    "salaryMin": 28000,
+    "salaryMax": 30000,
+    "postedDate": "2025-11-02",
+    "description": "We believe in efficiency! Why hire three people when we can pay one person one-third of one salary to do three jobs?",
+    "qualifications": [
+      "Pulitzer Prize for writing",
+      "Oscar for film editing",
+      "Turing Award for programming",
+      "20+ years experience in each field",
+      "Own professional video studio and software development lab",
+      "Must be under 25 years old to be 'entry-level'",
+      "Ability to write, edit, and code simultaneously",
+      "Time manipulation powers"
+    ],
+    "responsibilities": [
+      "Write 50 articles daily",
+      "Edit 100 videos weekly",
+      "Build and maintain entire website",
+      "Do all three simultaneously",
+      "Work 25 hours per day",
+      "Never take breaks (productivity!)",
+      "Be three people for the price of 0.3 people"
+    ],
+    "benefits": [
+      "Develop multiple personality disorder professionally",
+      "Master the art of doing everything poorly",
+      "Chronic stress included",
+      "Imposter syndrome in three fields at once",
+      "Versatile resume (unemployable specialist)"
+    ]
+  }
+]
