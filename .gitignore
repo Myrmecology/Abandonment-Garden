@@ -1,0 +1,424 @@
+# ================================
+# ABANDONMENT GARDEN - SECURITY-RICH .GITIGNORE
+# Maximum Security with YubiKey Protection
+# ================================
+
+# ================================
+# YUBIKEY & HARDWARE SECURITY
+# ================================
+# YubiKey configuration and credential files
+*.ykcs11
+*.ykman
+yubikey*.conf
+yubikey*.cfg
+yubico/
+.yubico/
+ykman-gui/
+yubikey-personalization/
+yubikey-manager/
+piv-tool/
+ykpers/
+*yubikey*
+*YubiKey*
+
+# Hardware security tokens
+*.token
+*.hsm
+*.pkcs11
+*.p11
+
+# ================================
+# ENVIRONMENT & CONFIGURATION
+# ================================
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.staging
+.env.*.local
+*.env
+.envrc
+
+# Configuration files with secrets
+config.js
+config.json
+config.local.*
+secrets.js
+secrets.json
+credentials.js
+credentials.json
+settings.local.*
+
+# ================================
+# AUTHENTICATION & CREDENTIALS
+# ================================
+# API Keys and Secrets
+*api-key*
+*apikey*
+*api_key*
+*.key
+*.secret
+*.credentials
+auth-config.*
+auth_config.*
+
+# OAuth & JWT
+oauth.*
+jwt.*
+token.*
+*.jwt
+*.oauth
+
+# Session files
+sessions/
+.sessions/
+*.session
+
+# Authentication tokens
+*token*
+*access-token*
+*refresh-token*
+
+# ================================
+# SSH & CRYPTOGRAPHIC KEYS
+# ================================
+# SSH keys
+*.pem
+*.ppk
+*.key
+*.pub
+id_rsa*
+id_dsa*
+id_ecdsa*
+id_ed25519*
+.ssh/
+ssh/
+known_hosts
+
+# PGP/GPG keys
+*.gpg
+*.pgp
+*.asc
+secring.*
+pubring.*
+
+# SSL/TLS Certificates
+*.crt
+*.cer
+*.ca-bundle
+*.p7b
+*.p7s
+*.pfx
+*.p12
+
+# Private keys
+private/
+*.private
+*_private.*
+privatekey.*
+private-key.*
+
+# ================================
+# DATABASE FILES
+# ================================
+# SQLite
+*.sqlite
+*.sqlite3
+*.db
+*.db3
+*.s3db
+
+# Database dumps
+*.sql
+*.dump
+*.bak
+*.backup
+
+# Database configuration
+database.json
+db-config.*
+database-config.*
+
+# ================================
+# DEPENDENCIES & PACKAGES
+# ================================
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Package lock files (optional - some prefer to commit these)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Dependency directories
+jspm_packages/
+bower_components/
+vendor/
+
+# ================================
+# BUILD & DISTRIBUTION
+# ================================
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.cache/
+.parcel-cache/
+.vuepress/dist/
+.docusaurus/
+.serverless/
+
+# Compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.pyc
+*.pyo
+
+# ================================
+# LOGS & TEMPORARY FILES
+# ================================
+# Log files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+log/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ================================
+# IDE & EDITOR FILES
+# ================================
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+.idea_modules/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*.swn
+.netrwhist
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# ================================
+# OPERATING SYSTEM FILES
+# ================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ================================
+# VERSION CONTROL
+# ================================
+.git/
+.gitattributes
+.gitmodules
+*.orig
+
+# ================================
+# SECURITY SCANS & REPORTS
+# ================================
+# Security audit reports
+audit/
+security-report.*
+vulnerability-report.*
+*.sarif
+
+# Code coverage
+coverage/
+*.lcov
+.nyc_output/
+htmlcov/
+*.cover
+.coverage
+.coverage.*
+
+# ================================
+# BACKUP FILES
+# ================================
+*.backup
+*.bak
+*.old
+*.orig
+*_backup.*
+*_old.*
+backup/
+backups/
+
+# ================================
+# PERSONAL & SENSITIVE DATA
+# ================================
+# Personal notes and documents
+notes.txt
+todo.txt
+personal/
+private/
+sensitive/
+
+# Email and communication
+*.eml
+*.msg
+
+# Financial and legal
+invoice/
+invoices/
+legal/
+contracts/
+
+# User data
+userdata/
+user-data/
+uploads/
+user-uploads/
+
+# ================================
+# CLOUD & DEPLOYMENT
+# ================================
+# AWS
+.aws/
+*.pem
+
+# Google Cloud
+.gcloud/
+*-key.json
+service-account*.json
+
+# Azure
+.azure/
+
+# Heroku
+.heroku/
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Kubernetes
+*.kubeconfig
+kubeconfig.*
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+*.tfvars
+
+# ================================
+# TESTING
+# ================================
+# Test results
+test-results/
+coverage/
+.nyc_output/
+*.spec.js.snap
+__snapshots__/
+
+# ================================
+# MISCELLANEOUS SECURITY
+# ================================
+# Passwords and secrets lists
+passwords.*
+secrets.*
+credentials.*
+*password*
+*secret*
+
+# 2FA codes and recovery codes
+2fa.*
+recovery-codes.*
+backup-codes.*
+
+# Encrypted files (be cautious)
+*.enc
+*.encrypted
+
+# Certificate signing requests
+*.csr
+
+# License keys
+license.key
+*.lic
+*.license
+
+# ================================
+# PROJECT SPECIFIC EXCLUSIONS
+# ================================
+# Add any Abandonment Garden specific files here as needed
+
+# ================================
+# END OF SECURITY-RICH .GITIGNORE
+# ================================
+# This file provides maximum protection for sensitive data
+# Regular security audits recommended
+# Keep this file updated as project evolves
