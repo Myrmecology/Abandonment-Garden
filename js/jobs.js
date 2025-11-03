@@ -3,39 +3,49 @@
    Job Search, Save, and Application System
    ================================ */
 
+console.log('🌙 jobs.js file loaded');
+
 class JobManager {
     constructor() {
+        console.log('JobManager constructor called');
         this.jobs = [];
         this.filteredJobs = [];
         this.savedJobs = [];
         this.applications = [];
         this.currentUser = null;
+        this.isLoading = true;
+        this.isReady = false;
         
-        this.init();
+        // Don't use async init in constructor
+        this.loadJobsData();
     }
 
     /**
-     * Initialize job manager
+     * Load jobs data (non-async wrapper)
      */
-    async init() {
-        // Load jobs data
-        await this.loadJobs();
-        
-        // Get current user
-        this.currentUser = this.getCurrentUser();
-        
-        // Load user data
-        if (this.currentUser) {
-            this.loadUserJobData();
-        }
-        
-        // Set up search and filter listeners
-        this.setupSearchListeners();
-        
-        // Render jobs if on jobs page
-        if (document.getElementById('jobsContainer')) {
-            this.renderJobs();
-        }
+    loadJobsData() {
+        console.log('loadJobsData called');
+        this.loadJobs().then(() => {
+            console.log('Jobs loaded successfully');
+            this.currentUser = this.getCurrentUser();
+            
+            if (this.currentUser) {
+                this.loadUserJobData();
+            }
+            
+            this.setupSearchListeners();
+            
+            if (document.getElementById('jobsContainer')) {
+                this.renderJobs();
+            }
+            
+            this.isLoading = false;
+            this.isReady = true;
+            console.log('✅ JobManager ready!');
+        }).catch(error => {
+            console.error('Failed to load jobs:', error);
+            this.isLoading = false;
+        });
     }
 
     /**
@@ -43,11 +53,32 @@ class JobManager {
      */
     async loadJobs() {
         try {
-            const response = await fetch('../data/jobs.json');
-            this.jobs = await response.json();
+            // Determine correct path
+            const currentPath = window.location.pathname;
+            let jsonPath = '';
+            
+            if (currentPath.includes('/pages/')) {
+                jsonPath = '../data/jobs.json';
+            } else {
+                jsonPath = './data/jobs.json';
+            }
+            
+            console.log('Loading jobs from:', jsonPath);
+            
+            const response = await fetch(jsonPath);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            this.jobs = data;
             this.filteredJobs = [...this.jobs];
+            
+            console.log('✅ Loaded', this.jobs.length, 'jobs');
+            
         } catch (error) {
-            console.error('Error loading jobs:', error);
+            console.error('❌ Error loading jobs:', error);
             this.jobs = [];
             this.filteredJobs = [];
         }
@@ -55,11 +86,14 @@ class JobManager {
 
     /**
      * Get current user from auth
-     * @returns {Object|null}
      */
     getCurrentUser() {
-        const session = localStorage.getItem('abandonment-garden-session');
-        return session ? JSON.parse(session) : null;
+        try {
+            const session = localStorage.getItem('abandonment-garden-session');
+            return session ? JSON.parse(session) : null;
+        } catch (e) {
+            return null;
+        }
     }
 
     /**
@@ -68,12 +102,16 @@ class JobManager {
     loadUserJobData() {
         if (!this.currentUser) return;
         
-        const users = JSON.parse(localStorage.getItem('abandonment-garden-users') || '[]');
-        const user = users.find(u => u.id === this.currentUser.id);
-        
-        if (user) {
-            this.savedJobs = user.savedJobs || [];
-            this.applications = user.applications || [];
+        try {
+            const users = JSON.parse(localStorage.getItem('abandonment-garden-users') || '[]');
+            const user = users.find(u => u.id === this.currentUser.id);
+            
+            if (user) {
+                this.savedJobs = user.savedJobs || [];
+                this.applications = user.applications || [];
+            }
+        } catch (e) {
+            console.error('Error loading user data:', e);
         }
     }
 
@@ -83,24 +121,26 @@ class JobManager {
     saveUserJobData() {
         if (!this.currentUser) return;
         
-        const users = JSON.parse(localStorage.getItem('abandonment-garden-users') || '[]');
-        const userIndex = users.findIndex(u => u.id === this.currentUser.id);
-        
-        if (userIndex !== -1) {
-            users[userIndex].savedJobs = this.savedJobs;
-            users[userIndex].applications = this.applications;
-            localStorage.setItem('abandonment-garden-users', JSON.stringify(users));
+        try {
+            const users = JSON.parse(localStorage.getItem('abandonment-garden-users') || '[]');
+            const userIndex = users.findIndex(u => u.id === this.currentUser.id);
             
-            // Update session
-            this.currentUser.savedJobs = this.savedJobs;
-            this.currentUser.applications = this.applications;
-            localStorage.setItem('abandonment-garden-session', JSON.stringify(this.currentUser));
+            if (userIndex !== -1) {
+                users[userIndex].savedJobs = this.savedJobs;
+                users[userIndex].applications = this.applications;
+                localStorage.setItem('abandonment-garden-users', JSON.stringify(users));
+                
+                this.currentUser.savedJobs = this.savedJobs;
+                this.currentUser.applications = this.applications;
+                localStorage.setItem('abandonment-garden-session', JSON.stringify(this.currentUser));
+            }
+        } catch (e) {
+            console.error('Error saving user data:', e);
         }
     }
 
     /**
      * Search jobs by keyword
-     * @param {string} query - Search query
      */
     searchJobs(query) {
         if (!query || query.trim() === '') {
@@ -120,7 +160,6 @@ class JobManager {
 
     /**
      * Filter jobs by category
-     * @param {string} category - Job category
      */
     filterByCategory(category) {
         if (category === 'all') {
@@ -134,7 +173,6 @@ class JobManager {
 
     /**
      * Sort jobs
-     * @param {string} sortBy - Sort criteria (newest, salary-high, salary-low)
      */
     sortJobs(sortBy) {
         switch (sortBy) {
@@ -154,17 +192,17 @@ class JobManager {
 
     /**
      * Get job by ID
-     * @param {string} jobId - Job ID
-     * @returns {Object|null}
      */
     getJobById(jobId) {
-        return this.jobs.find(job => job.id === jobId);
+        console.log('Looking for job:', jobId);
+        console.log('Total jobs:', this.jobs.length);
+        const job = this.jobs.find(j => j.id === jobId);
+        console.log('Found:', job ? job.title : 'NOT FOUND');
+        return job;
     }
 
     /**
-     * Save job to user's saved list
-     * @param {string} jobId - Job ID
-     * @returns {boolean}
+     * Save job
      */
     saveJob(jobId) {
         if (!this.currentUser) {
@@ -180,14 +218,11 @@ class JobManager {
         this.savedJobs.push(jobId);
         this.saveUserJobData();
         this.showMessage('Job saved successfully!', 'success');
-        
         return true;
     }
 
     /**
-     * Remove job from saved list
-     * @param {string} jobId - Job ID
-     * @returns {boolean}
+     * Unsave job
      */
     unsaveJob(jobId) {
         const index = this.savedJobs.indexOf(jobId);
@@ -196,14 +231,11 @@ class JobManager {
         this.savedJobs.splice(index, 1);
         this.saveUserJobData();
         this.showMessage('Job removed from saved list', 'info');
-        
         return true;
     }
 
     /**
      * Check if job is saved
-     * @param {string} jobId - Job ID
-     * @returns {boolean}
      */
     isJobSaved(jobId) {
         return this.savedJobs.includes(jobId);
@@ -211,7 +243,6 @@ class JobManager {
 
     /**
      * Get all saved jobs
-     * @returns {Array}
      */
     getSavedJobs() {
         return this.jobs.filter(job => this.savedJobs.includes(job.id));
@@ -219,8 +250,6 @@ class JobManager {
 
     /**
      * Apply to job
-     * @param {string} jobId - Job ID
-     * @returns {Object}
      */
     applyToJob(jobId) {
         if (!this.currentUser) {
@@ -230,7 +259,6 @@ class JobManager {
             };
         }
         
-        // Check if already applied
         const existingApplication = this.applications.find(app => app.jobId === jobId);
         if (existingApplication) {
             return {
@@ -247,21 +275,18 @@ class JobManager {
             };
         }
         
-        // Create application
         const application = {
-            id: this.generateApplicationId(),
+            id: 'app_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
             jobId: jobId,
             jobTitle: job.title,
             company: job.company,
             appliedDate: new Date().toISOString(),
-            status: 'rejected', // Instant rejection for satire
+            status: 'rejected',
             rejectionReason: this.getRandomRejectionReason()
         };
         
         this.applications.push(application);
         this.saveUserJobData();
-        
-        // Add achievement if applicable
         this.checkAchievements();
         
         return {
@@ -273,7 +298,6 @@ class JobManager {
 
     /**
      * Get random rejection reason
-     * @returns {string}
      */
     getRandomRejectionReason() {
         const reasons = [
@@ -298,16 +322,7 @@ class JobManager {
     }
 
     /**
-     * Generate application ID
-     * @returns {string}
-     */
-    generateApplicationId() {
-        return 'app_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-    }
-
-    /**
      * Get all applications
-     * @returns {Array}
      */
     getApplications() {
         return this.applications;
@@ -321,7 +336,6 @@ class JobManager {
         
         const achievementsList = [];
         
-        // Achievement: First Application
         if (this.applications.length === 1) {
             achievementsList.push({
                 id: 'first-app',
@@ -330,7 +344,6 @@ class JobManager {
             });
         }
         
-        // Achievement: 10 Applications
         if (this.applications.length === 10) {
             achievementsList.push({
                 id: '10-apps',
@@ -339,7 +352,6 @@ class JobManager {
             });
         }
         
-        // Achievement: 50 Applications
         if (this.applications.length === 50) {
             achievementsList.push({
                 id: '50-apps',
@@ -348,7 +360,6 @@ class JobManager {
             });
         }
         
-        // Achievement: 100 Rejections
         if (this.applications.length === 100) {
             achievementsList.push({
                 id: '100-rejections',
@@ -357,20 +368,23 @@ class JobManager {
             });
         }
         
-        // Save achievements
         if (achievementsList.length > 0) {
-            const users = JSON.parse(localStorage.getItem('abandonment-garden-users') || '[]');
-            const userIndex = users.findIndex(u => u.id === this.currentUser.id);
-            
-            if (userIndex !== -1) {
-                users[userIndex].achievements = users[userIndex].achievements || [];
-                achievementsList.forEach(achievement => {
-                    if (!users[userIndex].achievements.find(a => a.id === achievement.id)) {
-                        users[userIndex].achievements.push(achievement);
-                        this.showMessage(`Achievement Unlocked: ${achievement.title}!`, 'success');
-                    }
-                });
-                localStorage.setItem('abandonment-garden-users', JSON.stringify(users));
+            try {
+                const users = JSON.parse(localStorage.getItem('abandonment-garden-users') || '[]');
+                const userIndex = users.findIndex(u => u.id === this.currentUser.id);
+                
+                if (userIndex !== -1) {
+                    users[userIndex].achievements = users[userIndex].achievements || [];
+                    achievementsList.forEach(achievement => {
+                        if (!users[userIndex].achievements.find(a => a.id === achievement.id)) {
+                            users[userIndex].achievements.push(achievement);
+                            this.showMessage(`Achievement Unlocked: ${achievement.title}!`, 'success');
+                        }
+                    });
+                    localStorage.setItem('abandonment-garden-users', JSON.stringify(users));
+                }
+            } catch (e) {
+                console.error('Error saving achievements:', e);
             }
         }
     }
@@ -396,15 +410,11 @@ class JobManager {
         }
         
         container.innerHTML = this.filteredJobs.map(job => this.createJobCard(job)).join('');
-        
-        // Add event listeners
         this.attachJobCardListeners();
     }
 
     /**
      * Create job card HTML
-     * @param {Object} job - Job object
-     * @returns {string}
      */
     createJobCard(job) {
         const isSaved = this.isJobSaved(job.id);
@@ -437,7 +447,6 @@ class JobManager {
      * Attach event listeners to job cards
      */
     attachJobCardListeners() {
-        // Save/Unsave buttons
         const saveButtons = document.querySelectorAll('.btn-save-job');
         saveButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -454,7 +463,6 @@ class JobManager {
             });
         });
         
-        // Apply buttons
         const applyButtons = document.querySelectorAll('.btn-apply');
         applyButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -473,7 +481,6 @@ class JobManager {
 
     /**
      * Show rejection modal
-     * @param {Object} application - Application object
      */
     showRejectionModal(application) {
         const modal = document.createElement('div');
@@ -505,7 +512,6 @@ class JobManager {
         
         document.body.appendChild(modal);
         
-        // Close modal handlers
         const closeModal = () => {
             modal.classList.remove('active');
             setTimeout(() => modal.remove(), 300);
@@ -547,36 +553,27 @@ class JobManager {
 
     /**
      * Show message to user
-     * @param {string} message - Message text
-     * @param {string} type - Message type
      */
     showMessage(message, type = 'info') {
         if (window.Utils && window.Utils.Notify) {
             window.Utils.Notify.show(message, type);
         } else {
-            alert(message);
+            console.log(`${type.toUpperCase()}: ${message}`);
         }
     }
 }
 
 // ================================
-// INITIALIZE JOB MANAGER
+// INITIALIZE AND EXPORT
 // ================================
 
-let jobManager;
+console.log('Creating JobManager instance...');
 
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        jobManager = new JobManager();
-    });
-} else {
-    jobManager = new JobManager();
+try {
+    window.JobManager = JobManager;
+    window.jobs = new JobManager();
+    window.jobManager = window.jobs;
+    console.log('✅ window.jobs created successfully');
+} catch (error) {
+    console.error('❌ Error creating JobManager:', error);
 }
-
-// ================================
-// EXPORT FOR USE IN OTHER FILES
-// ================================
-
-window.JobManager = JobManager;
-window.jobs = jobManager;

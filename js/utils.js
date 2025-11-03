@@ -320,10 +320,10 @@ const Arr = {
 };
 
 // ================================
-// DATE UTILITIES
+// DATE UTILITIES (RENAMED FROM Date TO DateUtils)
 // ================================
 
-const Date = {
+const DateUtils = {
     /**
      * Format date to readable string
      * @param {Date} date - Date object
@@ -616,7 +616,7 @@ window.Utils = {
     Str,
     Num,
     Arr,
-    Date,
+    DateUtils,
     Validate,
     Animate,
     debounce,

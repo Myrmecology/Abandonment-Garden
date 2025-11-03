@@ -214,16 +214,6 @@ class AbandonmentGarden {
                 nav.classList.remove('scrolled');
             }
             
-            // Hide/show nav on scroll (optional)
-            // Uncomment if you want this behavior
-            /*
-            if (currentScroll > lastScroll && currentScroll > 100) {
-                nav.style.transform = 'translateY(-100%)';
-            } else {
-                nav.style.transform = 'translateY(0)';
-            }
-            */
-            
             lastScroll = currentScroll;
         });
     }
@@ -290,34 +280,64 @@ class AbandonmentGarden {
      */
     initJobDetailsPage() {
         console.log('📄 Initializing Job Details Page');
-        this.loadJobDetails();
-    }
-
-    /**
-     * Load job details from URL parameter
-     */
-    loadJobDetails() {
+        
+        // Get job ID from URL
         const urlParams = new URLSearchParams(window.location.search);
         const jobId = urlParams.get('id');
         
         if (!jobId) {
+            console.error('No job ID found in URL');
             window.location.href = 'jobs.html';
             return;
         }
+
+        // Wait for jobs manager to be ready
+        let attempts = 0;
+        const maxAttempts = 50; // 5 seconds max
         
-        // Wait for jobs to load
-        const checkJobs = setInterval(() => {
-            if (this.jobs && this.jobs.jobs.length > 0) {
-                clearInterval(checkJobs);
-                const job = this.jobs.getJobById(jobId);
+        const checkJobsReady = setInterval(() => {
+            attempts++;
+            
+            if (attempts > maxAttempts) {
+                clearInterval(checkJobsReady);
+                console.error('Timeout waiting for jobs to load');
+                this.showJobNotFound();
+                return;
+            }
+            
+            if (window.jobs && window.jobs.jobs && window.jobs.jobs.length > 0) {
+                clearInterval(checkJobsReady);
+                console.log('Jobs loaded, rendering job details for ID:', jobId);
+                
+                const job = window.jobs.getJobById(jobId);
                 
                 if (job) {
                     this.renderJobDetails(job);
                 } else {
-                    window.location.href = 'jobs.html';
+                    console.error('Job not found with ID:', jobId);
+                    this.showJobNotFound();
                 }
             }
         }, 100);
+    }
+
+    /**
+     * Show job not found message
+     */
+    showJobNotFound() {
+        const container = document.getElementById('jobDetailsContainer');
+        if (container) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-icon">🔍</div>
+                    <h3 class="empty-state-title">Job Not Found</h3>
+                    <p class="empty-state-description">
+                        The position you're looking for doesn't exist or has been filled.
+                    </p>
+                    <a href="jobs.html" class="btn btn-primary btn-pill">Browse All Jobs</a>
+                </div>
+            `;
+        }
     }
 
     /**
@@ -328,7 +348,7 @@ class AbandonmentGarden {
         const container = document.getElementById('jobDetailsContainer');
         if (!container) return;
         
-        const isSaved = this.jobs && this.jobs.isJobSaved(job.id);
+        const isSaved = window.jobs && window.jobs.isJobSaved(job.id);
         
         container.innerHTML = `
             <div class="job-details-header">
@@ -341,6 +361,7 @@ class AbandonmentGarden {
                 <div class="job-details-actions">
                     <button class="btn btn-primary btn-pill" id="applyBtn">Apply Now</button>
                     <button class="btn btn-secondary btn-pill" id="saveBtn">${isSaved ? 'Unsave' : 'Save'} Job</button>
+                    <a href="jobs.html" class="btn btn-outline btn-pill">Back to Jobs</a>
                 </div>
             </div>
             
@@ -374,21 +395,39 @@ class AbandonmentGarden {
         `;
         
         // Add event listeners
-        document.getElementById('applyBtn').addEventListener('click', () => {
-            const result = this.jobs.applyToJob(job.id);
-            if (result.success) {
-                this.jobs.showRejectionModal(result.application);
-            }
-        });
+        const applyBtn = document.getElementById('applyBtn');
+        const saveBtn = document.getElementById('saveBtn');
         
-        document.getElementById('saveBtn').addEventListener('click', () => {
-            if (isSaved) {
-                this.jobs.unsaveJob(job.id);
-            } else {
-                this.jobs.saveJob(job.id);
-            }
-            this.loadJobDetails();
-        });
+        if (applyBtn) {
+            applyBtn.addEventListener('click', () => {
+                if (!window.jobs) return;
+                
+                const result = window.jobs.applyToJob(job.id);
+                if (result.success && window.jobs.showRejectionModal) {
+                    window.jobs.showRejectionModal(result.application);
+                } else if (!result.success) {
+                    if (window.Utils && window.Utils.Notify) {
+                        window.Utils.Notify.show(result.message, 'error');
+                    } else {
+                        alert(result.message);
+                    }
+                }
+            });
+        }
+        
+        if (saveBtn) {
+            saveBtn.addEventListener('click', () => {
+                if (!window.jobs) return;
+                
+                if (isSaved) {
+                    window.jobs.unsaveJob(job.id);
+                    saveBtn.textContent = 'Save Job';
+                } else {
+                    window.jobs.saveJob(job.id);
+                    saveBtn.textContent = 'Unsave Job';
+                }
+            });
+        }
     }
 
     /**
