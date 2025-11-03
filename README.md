@@ -2,6 +2,8 @@
 
 **A satirical job search platform exposing the absurdity of modern hiring practices**
 
+For a video demo of this project, please visit: https://www.youtube.com/watch?v=QJFl1hWgsfs
+
 ---
 
 ## 📖 About

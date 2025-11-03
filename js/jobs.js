@@ -16,7 +16,6 @@ class JobManager {
         this.isLoading = true;
         this.isReady = false;
         
-        // Don't use async init in constructor
         this.loadJobsData();
     }
 
@@ -53,7 +52,6 @@ class JobManager {
      */
     async loadJobs() {
         try {
-            // Determine correct path
             const currentPath = window.location.pathname;
             let jsonPath = '';
             
@@ -249,9 +247,299 @@ class JobManager {
     }
 
     /**
-     * Apply to job
+     * Show application form modal - NEW!
      */
-    applyToJob(jobId) {
+    showApplicationFormModal(jobId, job) {
+        const modal = document.createElement('div');
+        modal.className = 'modal-overlay active';
+        modal.innerHTML = `
+            <div class="modal" style="max-width: 700px;">
+                <div class="modal-header">
+                    <h2 class="modal-title">Apply for ${job.title}</h2>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                    <p style="margin-bottom: 1.5rem; color: var(--color-text-muted);">
+                        Please complete this comprehensive application form. All fields are required unless otherwise noted.
+                    </p>
+                    
+                    <form id="applicationForm" class="application-form">
+                        <div class="form-section">
+                            <h3>Personal Information</h3>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Full Legal Name *</label>
+                                <input type="text" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Email Address *</label>
+                                <input type="email" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Phone Number *</label>
+                                <input type="tel" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Age *</label>
+                                <input type="number" class="form-input" min="18" max="120" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Current Address (Include apartment number, floor, and cardinal direction your window faces) *</label>
+                                <textarea class="form-input" rows="2" required></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3>Essential Information</h3>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Favorite Color (This will affect your hiring decision) *</label>
+                                <input type="text" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Blood Type *</label>
+                                <select class="form-input" required>
+                                    <option value="">Select...</option>
+                                    <option>A+</option>
+                                    <option>A-</option>
+                                    <option>B+</option>
+                                    <option>B-</option>
+                                    <option>AB+</option>
+                                    <option>AB-</option>
+                                    <option>O+</option>
+                                    <option>O-</option>
+                                    <option>I don't know</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Zodiac Sign *</label>
+                                <input type="text" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Spirit Animal *</label>
+                                <input type="text" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Mother's Maiden Name (For security purposes) *</label>
+                                <input type="text" class="form-input" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3>Professional Experience</h3>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Years of Professional Experience *</label>
+                                <input type="number" class="form-input" min="0" max="100" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Years of experience with technology invented last year *</label>
+                                <input type="number" class="form-input" min="0" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Current Salary Expectations (Annual in USD) *</label>
+                                <input type="number" class="form-input" required>
+                                <small class="form-help">Note: Our budget is approximately $12,000/year</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">How many hours per week can you dedicate to this role? (Minimum 168 required) *</label>
+                                <input type="number" class="form-input" min="168" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3>Availability</h3>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Can you work weekends? *</label>
+                                <select class="form-input" required>
+                                    <option value="">Select...</option>
+                                    <option>Yes, every weekend</option>
+                                    <option>No (Application will be rejected)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Can you work holidays? *</label>
+                                <select class="form-input" required>
+                                    <option value="">Select...</option>
+                                    <option>Yes, all holidays including my birthday</option>
+                                    <option>No (Not a culture fit)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Are you available for work while sleeping? *</label>
+                                <select class="form-input" required>
+                                    <option value="">Select...</option>
+                                    <option>Yes, I have mastered sleep-working</option>
+                                    <option>No, I require unconsciousness (Red flag)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3>References</h3>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Provide contact information for 3 Fortune 500 CEOs who will vouch for you *</label>
+                                <textarea class="form-input" rows="3" required placeholder="Name, Company, Phone Number, Personal Email"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">List any celebrities who can provide references *</label>
+                                <textarea class="form-input" rows="2" required></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3>Qualifications Assessment</h3>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Why do you want to work here? (500 word minimum) *</label>
+                                <textarea class="form-input" rows="5" required placeholder="Be specific and demonstrate your passion for underpaid labor"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">What makes you uniquely qualified for this position? (300 word minimum) *</label>
+                                <textarea class="form-input" rows="4" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Describe your biggest weakness (That's actually a strength) *</label>
+                                <textarea class="form-input" rows="3" required placeholder="e.g., 'I work too hard and care too much'"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3>Additional Requirements</h3>
+                            
+                            <div class="form-group">
+                                <label class="form-label">What is your net worth? (Must exceed $1 million to demonstrate financial stability) *</label>
+                                <input type="number" class="form-input" min="1000000" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">List all Ivy League degrees you hold *</label>
+                                <textarea class="form-input" rows="2" required></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3>Resume & Cover Letter (Optional)</h3>
+                            <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 1rem;">
+                                While optional, not including these documents will significantly reduce your chances (from 0% to 0%).
+                            </p>
+                            
+                            <div class="form-group">
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" id="skipResume"> 
+                                    <span>Skip resume and cover letter upload (not recommended)</span>
+                                </label>
+                            </div>
+                            
+                            <div id="resumeSection" style="margin-top: 1rem;">
+                                <div class="form-group">
+                                    <label class="form-label">Upload Resume (PDF only, must be under 1MB, formatted in Comic Sans)</label>
+                                    <input type="file" class="form-input" accept=".pdf">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Upload Cover Letter (Must be exactly 2,847 words)</label>
+                                    <input type="file" class="form-input" accept=".pdf,.doc,.docx">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <div class="form-group">
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" required> 
+                                    <span>I confirm that all information provided is accurate and that I meet all 47 impossible requirements listed in the job posting *</span>
+                                </label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" required> 
+                                    <span>I understand this application will be immediately rejected regardless of my qualifications *</span>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-pill modal-cancel">Cancel</button>
+                    <button class="btn btn-primary btn-pill" id="submitApplication">Submit Application</button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Handle resume section visibility
+        const skipCheckbox = modal.querySelector('#skipResume');
+        const resumeSection = modal.querySelector('#resumeSection');
+        
+        skipCheckbox.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                resumeSection.style.display = 'none';
+            } else {
+                resumeSection.style.display = 'block';
+            }
+        });
+        
+        // Close modal handlers
+        const closeModal = () => {
+            modal.classList.remove('active');
+            setTimeout(() => modal.remove(), 300);
+        };
+        
+        modal.querySelector('.modal-close').addEventListener('click', closeModal);
+        modal.querySelector('.modal-cancel').addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        
+        // Submit application
+        modal.querySelector('#submitApplication').addEventListener('click', (e) => {
+            e.preventDefault();
+            const form = modal.querySelector('#applicationForm');
+            
+            if (form.checkValidity()) {
+                // Close the application form modal
+                closeModal();
+                
+                // Now process the actual application (existing logic)
+                const result = this.processApplication(jobId);
+                
+                if (result.success) {
+                    // Show rejection modal
+                    this.showRejectionModal(result.application);
+                } else {
+                    this.showMessage(result.message, 'error');
+                }
+            } else {
+                form.reportValidity();
+            }
+        });
+    }
+
+    /**
+     * Process application (existing logic, just renamed)
+     */
+    processApplication(jobId) {
         if (!this.currentUser) {
             return {
                 success: false,
@@ -294,6 +582,42 @@ class JobManager {
             message: 'Application submitted!',
             application: application
         };
+    }
+
+    /**
+     * Apply to job - NOW shows form first
+     */
+    applyToJob(jobId) {
+        if (!this.currentUser) {
+            return {
+                success: false,
+                message: 'Please log in to apply for jobs'
+            };
+        }
+        
+        // Check if already applied
+        const existingApplication = this.applications.find(app => app.jobId === jobId);
+        if (existingApplication) {
+            this.showMessage('You have already applied to this position', 'error');
+            return {
+                success: false,
+                message: 'You have already applied to this position'
+            };
+        }
+        
+        const job = this.getJobById(jobId);
+        if (!job) {
+            return {
+                success: false,
+                message: 'Job not found'
+            };
+        }
+        
+        // Show application form modal FIRST
+        this.showApplicationFormModal(jobId, job);
+        
+        // Return null to indicate form is being shown
+        return { success: null };
     }
 
     /**
@@ -468,19 +792,13 @@ class JobManager {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const jobId = btn.getAttribute('data-job-id');
-                const result = this.applyToJob(jobId);
-                
-                if (result.success) {
-                    this.showRejectionModal(result.application);
-                } else {
-                    this.showMessage(result.message, 'error');
-                }
+                this.applyToJob(jobId);
             });
         });
     }
 
     /**
-     * Show rejection modal
+     * Show rejection modal (UNCHANGED)
      */
     showRejectionModal(application) {
         const modal = document.createElement('div');
